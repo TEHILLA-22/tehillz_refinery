@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tehillz Refinery - Africa's Largest Oil Refinery</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .floating-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.98);
+            padding: 0.5rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b35;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffffff, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideUp 1s ease-out 0.3s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            animation: slideUp 1s ease-out 0.6s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid #ffffff;
+        }
+
+        .btn-secondary:hover {
+            background: #ffffff;
+            color: #000;
+            transform: translateY(-3px);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Dashboard Section */
+        .dashboard {
+            padding: 5rem 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #ffffff, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .dashboard-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #ff6b35;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        .status-profit {
+            background: linear-gradient(45deg, #00ff88, #00cc6a);
+            color: #000;
+        }
+
+        .status-loss {
+            background: linear-gradient(45deg, #ff4757, #ff3838);
+            color: #fff;
+        }
+
+        /* Chart Container */
+        .chart-container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .chart {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chart-bars {
+            display: flex;
+            align-items: end;
+            gap: 10px;
+            height: 200px;
+        }
+
+        .chart-bar {
+            width: 30px;
+            background: linear-gradient(to top, #ff6b35, #f7931e);
+            border-radius: 5px 5px 0 0;
+            animation: growUp 2s ease-out;
+        }
+
+        @keyframes growUp {
+            from { height: 0; }
+            to { height: var(--height); }
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        /* Career Section */
+        .careers {
+            padding: 5rem 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .job-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-size: 1rem;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Investment Section */
+        .investment {
+            padding: 5rem 0;
+        }
+
+        .investment-calculator {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #000000, #1a1a2e);
+            padding: 3rem 0 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #ff6b35;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #ff6b35;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Real-time indicators */
+        .live-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 255, 136, 0.2);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #00ff88;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #ff6b35;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="floating-particles" id="particles"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">Tehillz Refinery</div>
+            <ul class="nav-links">
+                <li><a href="#home" onclick="scrollToSection('home')">Home</a></li>
+                <li><a href="#dashboard" onclick="scrollToSection('dashboard')">Dashboard</a></li>
+                <li><a href="#services" onclick="scrollToSection('services')">Services</a></li>
+                <li><a href="#careers" onclick="scrollToSection('careers')">Careers</a></li>
+                <li><a href="#investment" onclick="scrollToSection('investment')">Investment</a></li>
+                <li><a href="#contact" onclick="scrollToSection('contact')">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Africa's Largest Oil Refinery</h1>
+            <p>Powering Africa's energy future with world-class refining capabilities and sustainable operations</p>
+            <div class="cta-buttons">
+                <a href="#dashboard" class="btn btn-primary" onclick="scrollToSection('dashboard')">View Dashboard</a>
+                <a href="#careers" class="btn btn-secondary" onclick="scrollToSection('careers')">Join Our Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Real-time Dashboard -->
+    <section class="dashboard" id="dashboard">
+        <div class="container">
+            <h2 class="section-title">Real-Time Operations Dashboard</h2>
+            <div class="live-indicator">
+                <div class="live-dot"></div>
+                Live Data Feed
+            </div>
+            
+            <div class="dashboard-grid">
+                <!-- Inventory Tracking -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">🛢️</div>
+                        <div class="card-title">Current Inventory</div>
+                    </div>
+                    <div class="metric-value" id="inventory-value">2,456,789</div>
+                    <div class="metric-label">Barrels in Storage</div>
+                    <div class="status-indicator status-profit">Optimal Level</div>
+                </div>
+
+                <!-- Sales Tracking -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">📊</div>
+                        <div class="card-title">Today's Sales</div>
+                    </div>
+                    <div class="metric-value" id="sales-value">$15.2M</div>
+                    <div class="metric-label">Revenue Generated</div>
+                    <div class="status-indicator status-profit">+12% vs Yesterday</div>
+                </div>
+
+                <!-- Purchases -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">🚛</div>
+                        <div class="card-title">Crude Purchases</div>
+                    </div>
+                    <div class="metric-value" id="purchase-value">$8.7M</div>
+                    <div class="metric-label">Today's Expenditure</div>
+                    <div class="status-indicator status-profit">Within Budget</div>
+                </div>
+
+                <!-- Profit/Loss -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <div class="card-icon">💰</div>
+                        <div class="card-title">Net Profit/Loss</div>
+                    </div>
+                    <div class="metric-value" id="profit-value">+$6.5M</div>
+                    <div class="metric-label" id="profit-label">Today's Net Profit</div>
+                    <div class="status-indicator status-profit" id="profit-status">Profitable</div>
+                </div>
+            </div>
+
+            <!-- Financial Chart -->
+            <div class="chart-container">
+                <h3>30-Day Financial Overview</h3>
+                <div class="chart">
+                    <div class="chart-bars" id="financial-chart">
+                        <!-- Chart bars will be generated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Crude Oil Refining</h3>
+                    <p>State-of-the-art refining processes producing premium petroleum products with maximum efficiency and environmental compliance.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌍</div>
+                    <h3>Distribution Network</h3>
+                    <p>Extensive distribution infrastructure ensuring reliable supply chain across Africa and international markets.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔬</div>
+                    <h3>Quality Assurance</h3>
+                    <p>Advanced laboratory testing and quality control ensuring all products meet international standards and specifications.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌱</div>
+                    <h3>Sustainability</h3>
+                    <p>Environmental stewardship through clean technology, waste reduction, and community development programs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Careers Section -->
+    <section class="careers" id="careers">
+        <div class="container">
+            <h2 class="section-title">Join Our Team</h2>
+            <div class="job-form">
+                <h3>Apply for a Position</h3>
+                <form id="job-application">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="position">Desired Position</label>
+                        <select id="position" name="position" required>
+                            <option value="">Select a position</option>
+                            <option value="process-engineer">Process Engineer</option>
+                            <option value="operations-manager">Operations Manager</option>
+                            <option value="safety-specialist">Safety Specialist</option>
+                            <option value="quality-analyst">Quality Analyst</option>
+                            <option value="maintenance-technician">Maintenance Technician</option>
+                            <option value="financial-analyst">Financial Analyst</option>
+                            <option value="environmental-engineer">Environmental Engineer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">Years of Experience</label>
+                        <input type="number" id="experience" name="experience" placeholder="Enter years of experience" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="coverLetter">Cover Letter</label>
+                        <textarea id="coverLetter" name="coverLetter" rows="5" placeholder="Tell us why you want to join Tehillz Refinery"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Section -->
+    <section class="investment" id="investment">
+        <div class="container">
+            <h2 class="section-title">Investment Opportunities</h2>
+            <div class="investment-calculator">
+                <h3>Share Purchase Calculator</h3>
+                <div class="calculator-grid">
+                    <div>
+                        <div class="form-group">
+                            <label for="sharePrice">Current Share Price</label>
+                            <input type="number" id="sharePrice" value="245.50" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="shareQuantity">Number of Shares</label>
+                            <input type="number" id="shareQuantity" placeholder="Enter number of shares" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="investmentAmount">Investment Amount</label>
+                            <input type="number" id="investmentAmount" placeholder="Enter investment amount" min="1">
+                        </div>
+                        <button class="btn btn-primary" onclick="calculateInvestment()">Calculate Investment</button>
+                    </div>
+                    <div>
+                        <div class="dashboard-card">
+                            <h4>Investment Summary</h4>
+                            <div class="metric-value" id="totalCost">$0</div>
+                            <div class="metric-label">Total Investment Cost</div>
+                            <div class="metric-value" id="totalShares">0</div>
+                            <div class="metric-label">Total Shares</div>
+                            <button class="btn btn-secondary" onclick="purchaseShares()" style="width: 100%; margin-top: 1rem;">Purchase Shares</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <a href="tel:+2349039871998">+234 903 987 1998</a>
+                    <a href="mailto:odjojitehilla.com">odjojitehilla.com</a>
+                    <a href="#">Lekki Free Trade Zone, Lagos, Nigeria</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#dashboard" onclick="scrollToSection('dashboard')">Dashboard</a>
+                    <a href="#services" onclick="scrollToSection('services')">Services</a>
+                    <a href="#careers" onclick="scrollToSection('careers')">Careers</a>
+                    <a href="#investment" onclick="scrollToSection('investment')">Investment</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Investor Relations</h3>
+                    <a href="#" onclick="showInvestorInfo()">Annual Reports</a>
+                    <a href="#" onclick="showInvestorInfo()">Financial Statements</a>
+                    <a href="#" onclick="showInvestorInfo()">SEC Filings</a>
+                    <a href="#" onclick="showInvestorInfo()">Corporate Governance</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Operations</h3>
+                    <a href="#" onclick="showOperationsInfo()">Safety Reports</a>
+                    <a href="#" onclick="showOperationsInfo()">Environmental Impact</a>
+                    <a href="#" onclick="showOperationsInfo()">Community Programs</a>
+                    <a href="#" onclick="showOperationsInfo()">Sustainability</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tehillz Refinery. All rights reserved. Built with cutting-edge technology for Africa's energy future.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Global variables for real-time data simulation
+        let inventoryValue = 2456789;
+        let salesValue = 15.2;
+        let purchaseValue = 8.7;
+        let profitValue = 6.5;
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            updateNavbarOnScroll();
+            startRealTimeUpdates();
+            generateFinancialChart();
+            
+            // Form submissions
+            document.getElementById('job-application').addEventListener('submit', handleJobApplication);
+        });
+
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.width = Math.random() * 4 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // Smooth scrolling function
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Update navbar on scroll
+        function updateNavbarOnScroll() {
+            window.addEventListener('scroll', function() {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // Real-time data updates
+        function startRealTimeUpdates() {
+            setInterval(updateDashboardData, 3000); // Update every 3 seconds
+        }
+
+        function updateDashboardData() {
+            // Simulate real-time data changes
+            inventoryValue += Math.floor(Math.random() * 1000) - 500;
+            salesValue += (Math.random() * 0.5) - 0.25;
+            purchaseValue += (Math.random() * 0.3) - 0.15;
+            profitValue = salesValue - purchaseValue;
+
+            // Update DOM elements
+            document.getElementById('inventory-value').textContent = inventoryValue.toLocaleString();
+            document.getElementById('sales-value').textContent = ' + salesValue.toFixed(1) + 'M';
+            document.getElementById('purchase-value').textContent = ' + purchaseValue.toFixed(1) + 'M';
+            document.getElementById('profit-value').textContent = (profitValue >= 0 ? '+' : '') + ' + profitValue.toFixed(1) + 'M';
+            
+            // Update profit status
+            const profitStatus = document.getElementById('profit-status');
+            const profitLabel = document.getElementById('profit-label');
+            
+            if (profitValue >= 0) {
+                profitStatus.textContent = 'Profitable';
+                profitStatus.className = 'status-indicator status-profit';
+                profitLabel.textContent = "Today's Net Profit";
+            } else {
+                profitStatus.textContent = 'Loss';
+                profitStatus.className = 'status-indicator status-loss';
+                profitLabel.textContent = "Today's Net Loss";
+            }
+        }
+
+        // Generate financial chart
+        function generateFinancialChart() {
+            const chartContainer = document.getElementById('financial-chart');
+            const days = 30;
+            
+            for (let i = 0; i < days; i++) {
+                const bar = document.createElement('div');
+                bar.className = 'chart-bar';
+                const height = Math.random() * 150 + 50; // Random height between 50-200px
+                bar.style.setProperty('--height', height + 'px');
+                bar.style.height = height + 'px';
+                bar.title = `Day ${i + 1}: ${(Math.random() * 20 + 5).toFixed(1)}M`;
+                chartContainer.appendChild(bar);
+            }
+        }
+
+        // Job application handler
+        function handleJobApplication(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const applicationData = Object.fromEntries(formData);
+            
+            // Show loading state
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.innerHTML = '<div class="loading"></div> Processing Application...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                alert(`Thank you ${applicationData.fullName}! Your application for ${applicationData.position} has been submitted successfully. Our HR team will contact you within 48 hours.`);
+                
+                // Reset form
+                e.target.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                
+                // Log application data (in production, this would be sent to a server)
+                console.log('Job Application Submitted:', applicationData);
+            }, 2000);
+        }
+
+        // Investment calculator
+        function calculateInvestment() {
+            const sharePrice = parseFloat(document.getElementById('sharePrice').value) || 245.50;
+            const shareQuantity = parseInt(document.getElementById('shareQuantity').value) || 0;
+            const investmentAmount = parseFloat(document.getElementById('investmentAmount').value) || 0;
+            
+            let calculatedShares = shareQuantity;
+            let calculatedCost = shareQuantity * sharePrice;
+            
+            // If investment amount is provided, calculate shares
+            if (investmentAmount > 0 && shareQuantity === 0) {
+                calculatedShares = Math.floor(investmentAmount / sharePrice);
+                calculatedCost = calculatedShares * sharePrice;
+                document.getElementById('shareQuantity').value = calculatedShares;
+            }
+            // If shares are provided, calculate cost
+            else if (shareQuantity > 0) {
+                calculatedCost = shareQuantity * sharePrice;
+                document.getElementById('investmentAmount').value = calculatedCost.toFixed(2);
+            }
+            
+            // Update display
+            document.getElementById('totalCost').textContent = ' + calculatedCost.toLocaleString();
+            document.getElementById('totalShares').textContent = calculatedShares.toLocaleString();
+        }
+
+        function purchaseShares() {
+            const totalShares = document.getElementById('totalShares').textContent.replace(/,/g, '');
+            const totalCost = document.getElementById('totalCost').textContent;
+            
+            if (totalShares === '0' || totalCost === '$0') {
+                alert('Please calculate your investment first.');
+                return;
+            }
+            
+            const confirmation = confirm(`Confirm purchase of ${totalShares} shares for ${totalCost}?`);
+            
+            if (confirmation) {
+                alert(`Success! You have purchased ${totalShares} shares of Tehillz Refinery for ${totalCost}. Transaction confirmation will be sent to your email.`);
+                            
+                document.getElementById('shareQuantity').value = '';
+                document.getElementById('investmentAmount').value = '';
+                document.getElementById('totalCost').textContent = '$0';
+                document.getElementById('totalShares').textContent = '0';
+                
+                console.log('Share purchase completed:', {
+                    shares: totalShares,
+                    cost: totalCost,
+                    timestamp: new Date().toISOString()
+                });
+            }
+        }
+
+        
+        function showInvestorInfo() {
+            alert('Investor information portal coming soon! You will be able to access:\n\n• Quarterly earnings reports\n• Annual financial statements\n• SEC filings and regulatory documents\n• Corporate governance policies\n• Dividend information\n• Shareholder meeting schedules');
+        }
+
+        
+        function showOperationsInfo() {
+            alert('Operations transparency portal coming soon! You will be able to view:\n\n• Real-time safety metrics\n• Environmental compliance reports\n• Community development projects\n• Sustainability initiatives\n• Production capacity utilization\n• Supply chain information');
+        }
+
+        function updateSharePrice() {
+            const sharePriceElement = document.getElementById('sharePrice');
+            let currentPrice = parseFloat(sharePriceElement.value);
+            
+
+            const change = (Math.random() - 0.5) * 0.04;
+            currentPrice = currentPrice * (1 + change);
+            
+            sharePriceElement.value = currentPrice.toFixed(2);
+        }
+
+        
+        setInterval(updateSharePrice, 10000);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('shareQuantity').addEventListener('input', calculateInvestment);
+            document.getElementById('investmentAmount').addEventListener('input', calculateInvestment);
+        });
+
+        // Keyboard navigation support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+               
+                document.activeElement.blur();
+            }
+        });
+
+        
+        function logPerformanceMetrics() {
+            if (window.performance && window.performance.timing) {
+                const timing = window.performance.timing;
+                const loadTime = timing.loadEventEnd - timing.navigationStart;
+                console.log('Page Load Time:', loadTime + 'ms');
+            }
+        }
+
+        window.addEventListener('load', logPerformanceMetrics);
+
+        // Error handling for failed operations
+        window.addEventListener('error', function(e) {
+            console.error('Application Error:', e.error);
+        });
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add focus indicators for keyboard navigation
+            const focusableElements = document.querySelectorAll('a, button, input, select, textarea');
+            focusableElements.forEach(element => {
+                element.addEventListener('focus', function() {
+                    this.style.outline = '2px solid #ff6b35';
+                    this.style.outlineOffset = '2px';
+                });
+                
+                element.addEventListener('blur', function() {
+                    this.style.outline = 'none';
+                });
+            });
+        });
+
+       
+        function updateChartResponsiveness() {
+            const chart = document.getElementById('financial-chart');
+            const containerWidth = chart.parentElement.offsetWidth;
+            const bars = chart.querySelectorAll('.chart-bar');
+            
+            if (containerWidth < 600) {
+                bars.forEach((bar, index) => {
+                    if (index % 2 === 1) bar.style.display = 'none';
+                });
+            } else {
+                bars.forEach(bar => bar.style.display = 'block');
+            }
+        }
+
+        window.addEventListener('resize', updateChartResponsiveness);
+
+       
+        window.addEventListener('load', function() {
+            updateChartResponsiveness();
+            
+           
+            setTimeout(() => {
+                console.log('🛢️ Welcome to Tehillz Refinery - Africa\'s Largest Oil Refinery');
+                console.log('💼 Real-time operations dashboard is now active');
+                console.log('📊 All systems operational and reporting live data');
+            }, 1000);
+        });
+
+        // Data export functionality
+        function exportDashboardData() {
+            const data = {
+                timestamp: new Date().toISOString(),
+                inventory: inventoryValue,
+                sales: salesValue,
+                purchases: purchaseValue,
+                profit: profitValue,
+                operations: 'Normal'
+            };
+            
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(dataBlob);
+            link.download = `Tehillz-refinery-data-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+        }
+
+      
+
+        console.log('💾 To export current dashboard data, run: exportDashboardData()');
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
